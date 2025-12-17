@@ -1,0 +1,45 @@
+/* Global Styles */
+
+/* Scrollbar styles for WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track (path) */
+::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 10px;
+}
+
+/* Thumb (draggable part) */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #9333ea, #ec4899);
+  /* Gradient */
+  border-radius: 10px;
+  border: 2px solid #f0f0f0;
+}
+
+/* On hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #7e22ce, #db2777);
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #9333ea #f0f0f0;
+}
+
+/* Example: Scrollable container */
+.Main {
+  width: 100%;
+  overflow-y: auto;
+}
+
+/* Remove number input arrows in WebKit browsers */
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
