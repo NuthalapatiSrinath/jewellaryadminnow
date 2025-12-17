@@ -1,23 +1,22 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { createSlice } from "@reduxjs/toolkit";
 
 const navBarSlice = createSlice({
   name: "navBar",
   initialState: {
-    isSideBarOpen: true,
+    isSideBarOpen: false, // ✅ MUST BE FALSE
   },
   reducers: {
     toggleNavBar(state) {
-      state.isOpen = !state.isOpen;
+      state.isSideBarOpen = !state.isSideBarOpen;
     },
     openNavBar(state) {
-      state.isOpen = true;
+      state.isSideBarOpen = true;
     },
     closeNavBar(state) {
-      state.isOpen = false;
+      state.isSideBarOpen = false;
     },
   },
 });
 
 export const { toggleNavBar, openNavBar, closeNavBar } = navBarSlice.actions;
-
 export default navBarSlice.reducer;

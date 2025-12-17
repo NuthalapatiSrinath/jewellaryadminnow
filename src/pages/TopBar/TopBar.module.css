@@ -1,613 +1,395 @@
-:root {
-  --primary: #993399;
-  /* --topbar-height intentionally NOT hardcoded here.
-       Topbar.jsx should measure and write --topbar-height to :root at runtime
-       (document.documentElement.style.setProperty('--topbar-height', 'XXpx')) */
-}
+/* ========================================= */
+/* BASE TOPBAR                               */
+/* ========================================= */
 
-/* ---------- Topbar base ---------- */
 .topbar {
-  height: 100%;
   width: 100%;
-  min-height: 98px;
-  background: #fff;
-  /* white topbar */
-  font-family: "Montserrat", sans-serif;
-  color: #111;
+  background: var(--White_Color);
+  font-family: var(--Font_Family);
+  color: var(--Black_Color);
   position: sticky;
   top: 0;
   z-index: 1400;
-  /* keep header above panel if required */
-  padding: 0.45rem;
   transition: box-shadow 0.25s ease;
-  box-shadow: none;
-  /* default no shadow — scroll adds shadow via .scrolled */
 }
 
-/* scrolled still shows subtle shadow (keeps behavior) */
 .scrolled {
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* row / layout */
 .row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 28px;
-  position: relative;
+  padding: 0 24px;
+  height: 60px;
 }
+
+/* ========================================= */
+/* LEFT | CENTER | RIGHT                     */
+/* ========================================= */
 
 .left {
   display: flex;
   gap: 18px;
-  align-items: center;
-  flex: 0 0 auto;
-}
-
-.utilityLink {
-  color: #9b9b9b;
-  text-decoration: none;
-  font-size: 13px;
-}
-
-.utilityLink:hover {
-  text-decoration: underline;
 }
 
 .center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 1 1 auto;
+  gap: 12px;
 }
+
+/* ========================================= */
+/* BRANDING                                  */
+/* ========================================= */
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   text-decoration: none;
-  color: #111;
+  color: var(--Black_Color);
 }
 
 .brandText {
-  font-size: 23.5px;
-  letter-spacing: 4px;
+  font-size: 22px;
+  letter-spacing: 3px;
   font-weight: 500;
 }
 
 .emblem {
+  height: 32px;
+}
+
+/* ========================================= */
+/* UTILITY LINKS                             */
+/* ========================================= */
+
+.utilityLink {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--Grey_Color);
+  text-decoration: none;
+}
+
+.utilityLink:hover {
+  color: var(--Primary_Color);
+  text-decoration: underline;
+}
+
+/* ========================================= */
+/* ICON BUTTONS                              */
+/* ========================================= */
+
+.iconBtn {
   height: 40px;
-  width: auto;
-  display: inline-block;
+  width: 40px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--Black_Color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.2s ease;
+  font-size: 18px;
 }
 
-.brand .emblem {
-  display: none;
+.iconBtn:hover {
+  background: var(--Utility_Color1);
+  color: var(--Primary_Color);
 }
 
-/* nav */
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 16px;
+  width: 16px;
+  background: var(--Primary_Color);
+  color: var(--White_Color);
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--White_Color);
+}
+
+/* ========================================= */
+/* NAVIGATION BAR                            */
+/* ========================================= */
+
 .nav {
   width: 100%;
-  padding: 10px 2px;
 }
 
 .navList {
   display: flex;
   justify-content: center;
-  /* gap: 27px; */
-  list-style: none;
-  margin: 0;
-  padding: 0 28px;
-  font-size: 14px;
-  letter-spacing: 1.6px;
-  text-transform: uppercase;
-}
-
-.navItem {
-  color: #333;
-  text-decoration: none;
-  padding: 6px 20px;
-  position: relative;
-  background: transparent;
-  /* IMPORTANT: no transform or color change on hover per request */
-  transition: color 0.12s ease;
-}
-
-/* underline only — animated scaleX from left */
-.navItem::after {
-  display: flex;
-
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  height: 4px;
-  width: 100%;
-  color: var(--primary);
-  background: var(--primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.26s cubic-bezier(0.2, 0.9, 0.3, 1);
-  opacity: 0;
-  border-radius: 2px;
-}
-
-/* show underline on hover & focus-within; DO NOT change text color or translate */
-.navItem:hover::after,
-.navItem:focus-visible::after {
-  transform: scaleX(1);
-  opacity: 0.7;
-}
-
-.active::after {
-  color: #993399;
-}
-
-/* ACTIVE: change the text color of the active nav item */
-.navItem.active,
-.navItem.active:link,
-.navItem.active:visited,
-.navItem.active:focus {
-  color: var(--primary);
-  /* primary color for the label text */
-}
-
-/* if you use .active on the NavLink via the CSS module class 'active' applied to the element,
-   use this instead (NavLink often yields an element with that class directly) */
-.active {
-  color: var(--primary);
-}
-
-/* bottom border alignment */
-.bottomBorder {
-  height: 1px;
-  background: rgba(0, 0, 0, 0.06);
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1350px;
-}
-
-/* right area */
-.right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 160px;
-  justify-content: flex-end;
-}
-
-/* currency */
-.currencySelector {
-  position: relative;
-  display: inline-block;
-}
-
-.currencyButton {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 6px;
-  color: #666;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.currencyButton:hover {
-  color: #333;
-}
-
-.currencyText {
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.chevron {
-  font-size: 10px;
-  transition: transform 0.2s ease;
-}
-
-.currencyButton:hover .chevron {
-  transform: rotate(180deg);
-}
-
-.currencyDropdown {
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  min-width: 120px;
-  z-index: 1600;
-  overflow: hidden;
-  margin-top: 6px;
-}
-
-.currencyOption {
-  display: block;
-  width: 100%;
-  padding: 12px 16px;
-  border: none;
-  background: transparent;
-  text-align: left;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
-}
-
-.currencyOption:hover {
-  background: #f5f5f5;
-}
-
-.currencyOption.selected {
-  background: #f0f0f0;
-  font-weight: 600;
-  color: var(--primary);
-}
-
-/* icon buttons */
-.iconBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: #000;
-  transition: background 0.18s, color 0.18s;
-  /* Ensure relative positioning so the badge can be placed absolutely inside */
-  position: relative;
-}
-
-.iconBtn:hover {
-  background: #ecf4ff;
-  color: var(--primary);
-}
-
-/* Badge for count (e.g. wishlist/cart count) */
-.badge {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  background-color: var(--primary);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 700;
-  height: 16px;
-  min-width: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  border: 1px solid #fff;
-  padding: 0 3px;
-  pointer-events: none;
-  /* allows click-through to the link/button underneath */
-  z-index: 2;
-}
-
-/* hamburger for mobile */
-.hamburger {
-  display: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-/* drawer overlay & drawer (mobile) */
-.drawerOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0);
-  pointer-events: none;
-  transition: background 0.18s ease;
-  z-index: 1300;
-}
-
-.drawerOverlay.open {
-  background: rgba(0, 0, 0, 0.45);
-  pointer-events: auto;
-}
-
-.mobileDrawer {
-  position: fixed;
-  left: -320px;
-  top: 0;
-  height: 100vh;
-  width: 320px;
-  max-width: 85vw;
-  background: #fff;
-  z-index: 1400;
-  transition: left 0.25s cubic-bezier(0.22, 0.9, 0.39, 1);
-  overflow: auto;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
-}
-
-.mobileDrawer.open {
-  left: 0;
-}
-
-.drawerHeader {
-  display: flex;
-  justify-content: flex-end;
-  padding: 12px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-.closeBtn {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.drawerContent {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 14px;
-}
-
-.drawerLink {
-  color: #666;
-  text-decoration: none;
-  padding: 6px 2px;
-}
-
-.drawerNav li {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.drawerNavLink {
-  color: #222;
+.navItem {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   text-decoration: none;
-  display: block;
-  padding: 8px 6px;
-  border-radius: 6px;
-}
-
-.drawerNavLink:hover {
-  background: #f6f6f6;
-  color: var(--primary);
-}
-
-/* responsive */
-@media (max-width: 980px) {
-  .left {
-    display: none;
-  }
-
-  .navList {
-    display: none;
-  }
-
-  .brandText {
-    display: none;
-  }
-
-  .brand .emblem {
-    display: inline-block;
-  }
-
-  .hamburger {
-    display: inline-flex;
-  }
-
-  .center {
-    align-items: center;
-  }
-
-  .right {
-    gap: 8px;
-  }
-
-  .currencyButton {
-    padding: 6px 10px;
-    font-size: 13px;
-  }
-
-  .currencyDropdown {
-    min-width: 100px;
-  }
-
-  .currencyOption {
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-}
-
-/* ---------- Full-width fixed mega panel ---------- */
-
-/* parent li used for hover and focus-within */
-.navLiWithPanel {
+  color: var(--Black_Color);
   position: relative;
 }
 
-/* panelWrap: full viewport width, starts below header (css var set on :root by JS) */
+/* underline animation */
+.navItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--Primary_Color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.navItem:hover::after,
+.navItem.active::after {
+  transform: scaleX(1);
+}
+
+.navItem.active {
+  color: var(--Primary_Color);
+}
+
+.bottomBorder {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* ========================================= */
+/* MEGA MENU                                 */
+/* ========================================= */
+
+.navLiWithPanel {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* wrapper */
 .panelWrap {
   position: fixed;
   left: 0;
   right: 0;
-  /* use dynamic var set by JS on :root; fallback to 84px if missing */
-  top: calc(var(--topbar-height, 84px));
-  pointer-events: none;
+  top: calc(var(--topbar-height, 100px));
+  background: var(--White_Color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   z-index: 1200;
   display: flex;
   justify-content: center;
-  padding: 0;
-  /* no left/right gap */
-  transform-origin: top center;
-  transform: translateY(6px) scaleY(0.995);
+
   opacity: 0;
-  transition: transform 0.26s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.18s ease;
-  background: #fff;
-  /* same white as topbar */
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-/* reveal on hover or keyboard focus */
-/* .navLiWithPanel:hover .panelWrap,
-.navLiWithPanel:focus-within .panelWrap {
-    transform: translateY(0) scaleY(1);
-    opacity: 1;
-    pointer-events: auto;
-} */
-/* JS-controlled reveal: only show when .panelWrap has .open */
-.panelWrap.open {
-  transform: translateY(0) scaleY(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-/* prevent double underline animation (hover + active) */
-.navItem.active::after,
-.navItem:active::after {
-  /* transform: scaleX(1); */
-  opacity: 1;
-  transition: none;
-  /* stops animation replay on click */
-}
-/* keep topbar above panel visually (header white remains unchanged) */
-.topbar {
-  z-index: 1400;
+/* IMPORTANT */
+.open {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: auto !important;
 }
 
-/* megaPanel spans full width; inner card sits flush with no side gutters */
 .megaPanel {
   width: 100%;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
+  max-width: 1400px;
 }
 
-/* megaInner: the white content box — we keep padding to columns but no outer left/right space */
 .megaInner {
-  width: 100%;
-  max-width: 100%;
+  padding: 40px 60px;
   display: flex;
-  gap: 48px;
+  gap: 60px;
   align-items: flex-start;
-  background: #fff;
-  padding: 28px 56px;
-  /* internal padding; adjust here if you want tighter spacing */
-  box-shadow: 0 px 40px rgba(0, 0, 0, 0.08);
-  /* shadow below the panel box */
-  border-radius: 0;
-  /* square edges because you asked no side gap */
-  box-sizing: border-box;
 }
 
-/* Columns — allow many columns; spacing controlled inside */
+/* columns */
 .column {
-  min-width: 200px;
-  flex: 1 0 auto;
-  padding-right: 8px;
+  min-width: 180px;
 }
 
 .column h4 {
-  margin: 0 0 12px 0;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 1px;
-  color: #6a6a6a;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  padding-bottom: 10px;
+  color: var(--Grey_Color);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .column ul {
   list-style: none;
-  margin: 12px 0 0 0;
+  margin: 0;
   padding: 0;
 }
 
 .column li {
-  margin: 8px 0;
+  margin-bottom: 8px;
 }
 
-.column a {
-  display: inline-flex;
-  align-items: center;
-  gap: px;
-  text-decoration: none;
-  color: #666;
+.panelItemLink {
   font-size: 14px;
+  color: #555;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.2s ease;
 }
 
-.column a:hover {
-  color: var(--primary);
+.panelItemLink:hover {
+  color: var(--Primary_Color);
 }
 
-/* tiny icon only for shape items */
 .itemIcon {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-  display: inline-block;
-  opacity: 0.95;
+  width: 20px;
+  height: 20px;
 }
 
-/* image column on far right */
+/* image block */
 .panelImage {
-  width: 270px;
-  flex: 0 0 280px;
+  width: 280px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 12px;
 }
 
 .panelImage img {
   width: 100%;
-  max-height: 320px;
-  height: auto;
-  display: block;
+  border-radius: 4px;
 }
 
 .panelCta {
-  display: inline-block;
-  background: #444;
-  color: #fff;
-  padding: 10px 18px;
+  background: var(--Black_Color);
+  color: var(--White_Color);
+  padding: 10px 20px;
   text-decoration: none;
+  text-align: center;
+  font-size: 13px;
   border-radius: 4px;
-  margin-top: 8px;
+  text-transform: uppercase;
 }
 
-/* At smaller breakpoints we hide the right hero image and tighten paddings */
-@media (max-width: 1180px) {
-  .megaInner {
-    gap: 28px;
-    padding: 22px 28px;
-  }
+/* ========================================= */
+/* MOBILE                                    */
+/* ========================================= */
 
-  .panelImage {
-    display: none;
-  }
-
-  .column {
-    min-width: 160px;
-  }
+.hamburger,
+.mobileDrawer,
+.drawerOverlay {
+  display: none;
 }
 
 @media (max-width: 980px) {
-  /* disable panel on small screens — mobile drawer used instead */
+  .left,
+  .nav,
   .panelWrap {
-    display: none;
+    display: none !important;
   }
-}
 
-/* accessibility focus */
-.megaInner a:focus {
-  outline: 2px solid rgba(153, 51, 153, 0.12);
-  outline-offset: 2px;
-  border-radius: 2px;
+  .hamburger {
+    display: inline-flex;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .brandText {
+    font-size: 18px;
+  }
+
+  .iconBtn {
+    height: 36px;
+    width: 36px;
+  }
+
+  /* Overlay */
+  .drawerOverlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+  }
+
+  .drawerOverlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Drawer */
+  .mobileDrawer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    background: var(--White_Color);
+    z-index: 2100;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .mobileDrawer.open {
+    transform: translateX(0);
+  }
+
+  .drawerHeader {
+    padding: 16px;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid #eee;
+  }
+
+  .drawerContent {
+    padding: 20px;
+  }
+
+  .drawerNav ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .drawerNavLink {
+    display: block;
+    padding: 14px 0;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--Black_Color);
+  }
+
+  .drawerNavLink:hover {
+    color: var(--Primary_Color);
+  }
 }
