@@ -1,27 +1,22 @@
+// src/redux/slices/modalSlice.js
 import { createSlice } from "@reduxjs/toolkit";
+
+const initialState = {
+  type: null,
+  props: {}, // We need this to pass data to modals
+};
 
 const modalSlice = createSlice({
   name: "modal",
-  initialState: {
-    isOpen: false,
-    type: "",
-    config: {},
-    modalData: null,
-  },
-
+  initialState,
   reducers: {
     openModal: (state, action) => {
-      state.isOpen = true;
-      state.type = action.payload?.type || "";
-      state.modalData = action.payload?.modalData || null; // ✅ match key
-      state.config = action.payload?.config || {};
+      state.type = action.payload.type;
+      state.props = action.payload.props || {};
     },
-
     closeModal: (state) => {
-      state.isOpen = false;
-      state.type = "";
-      state.modalData = null;
-      state.config = {};
+      state.type = null;
+      state.props = {};
     },
   },
 });

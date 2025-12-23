@@ -1,31 +1,27 @@
-.MainModal {
+/* The dark background overlay */
+.Overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-
-  /* dim background */
+  background-color: rgba(0, 0, 0, 0.6); /* Dimmed background */
+  backdrop-filter: blur(4px); /* Optional: Adds a nice blur effect */
   display: flex;
-  justify-content: flex-end;
-  /* 👈 push modal to right side */
-  align-items: stretch;
-  /* full height */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
   z-index: 2000;
   overflow: hidden;
-  /* disable scroll inside overlay */
 }
 
-/* Right-side drawer modal */
-.drawer {
-  /* adjust drawer width */
+/* The wrapper around your actual modal content */
+.CenteredContainer {
+  /* No fixed width here - let the child component (AuthModal) decide its width */
   max-width: 90%;
-  height: 100%;
-
-  overflow-y: auto;
-  /* if content is taller than viewport */
-
+  max-height: 90vh;
+  overflow-y: auto; /* Allow scrolling inside the modal if it's too tall */
   position: relative;
-  border-radius: 0;
-  /* flat edge against right */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

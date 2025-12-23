@@ -1,0 +1,664 @@
+/* --- General Container --- */
+.Container {
+  padding: 2rem;
+  background-color: #f9fafb; /* Very light gray bg */
+  min-height: 100vh;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #111827;
+}
+
+/* --- Header Section --- */
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.Title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  letter-spacing: -0.025em;
+}
+
+.Subtitle {
+  color: #6b7280;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.Actions {
+  display: flex;
+  gap: 12px;
+}
+
+/* --- Buttons --- */
+.BtnPrimary,
+.BtnSecondary,
+.BtnSuccess,
+.BtnCancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.BtnPrimary {
+  background-color: #111827; /* Black */
+  color: white;
+}
+.BtnPrimary:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+.BtnPrimary:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.BtnSecondary {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+.BtnSecondary:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.BtnSuccess {
+  background-color: #10b981;
+  color: white;
+}
+.BtnSuccess:hover {
+  background-color: #059669;
+}
+
+.BtnCancel {
+  background-color: transparent;
+  color: #6b7280;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.BtnCancel:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+/* --- Filter Bar --- */
+.FilterBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.SearchWrapper {
+  position: relative;
+  flex: 1;
+  min-width: 250px;
+}
+
+.SearchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+.SearchInput {
+  width: 100%;
+  padding: 10px 10px 10px 38px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.15s;
+}
+.SearchInput:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.FilterGroup {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.Select {
+  padding: 10px 30px 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.FilterBtn {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.FilterBtn:hover {
+  background-color: #dbeafe;
+}
+
+/* --- Table Card --- */
+.TableCard {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.TableWrapper {
+  overflow-x: auto;
+}
+
+.Table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.Table th {
+  background-color: #f9fafb;
+  padding: 12px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  letter-spacing: 0.05em;
+}
+
+.Table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 0.9rem;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.Table tr:last-child td {
+  border-bottom: none;
+}
+.Table tr:hover td {
+  background-color: #f9fafb;
+}
+
+/* Table Columns Styling */
+.Sku {
+  font-family: "Monaco", "Consolas", monospace;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+.TextBold {
+  font-weight: 600;
+  color: #111827;
+}
+.Price {
+  font-weight: 600;
+  color: #059669;
+}
+
+.BadgeShape {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #f3f4f6;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #4b5563;
+  text-transform: uppercase;
+}
+
+.RowInactive td {
+  opacity: 0.6;
+  background-color: #f9fafb;
+}
+
+/* Status Badges */
+.StatusActive,
+.StatusInactive {
+  padding: 4px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+.StatusActive {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+.StatusActive:hover {
+  background-color: #a7f3d0;
+}
+.StatusInactive {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+.StatusInactive:hover {
+  background-color: #e5e7eb;
+}
+
+/* Actions */
+.ActionCell {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+.IconBtn,
+.IconBtnDelete {
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.IconBtn {
+  color: #6b7280;
+}
+.IconBtn:hover {
+  background-color: #eff6ff;
+  color: #2563eb;
+}
+.IconBtnDelete {
+  color: #9ca3af;
+}
+.IconBtnDelete:hover {
+  background-color: #fef2f2;
+  color: #dc2626;
+}
+
+/* --- Pagination --- */
+.Pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  background-color: #fff;
+}
+
+.PageInfo {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+.PageInfo b {
+  color: #111827;
+}
+
+.PageActions {
+  display: flex;
+  gap: 8px;
+}
+.PageBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+}
+.PageBtn:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+.PageBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* --- Skeleton Loading Animation --- */
+.SkeletonRow td {
+  padding: 16px 24px;
+}
+.SkeletonBox {
+  height: 16px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+.EmptyState {
+  text-align: center;
+  padding: 3rem !important;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* --- Modal Styles --- */
+.ModalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 1rem;
+}
+
+.ModalContent {
+  background: white;
+  width: 100%;
+  max-width: 650px;
+  border-radius: 16px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.ModalHeader {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+}
+
+.ModalHeader h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #111827;
+}
+.CloseBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+}
+.CloseBtn:hover {
+  color: #111827;
+}
+
+.ModalBody {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+/* Form Styles */
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.SectionTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin: 1rem 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 0.5rem;
+}
+
+.InputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.InputGroup label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.Input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.15s;
+}
+.Input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.Grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.Grid3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.ModalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* Upload Box */
+.UploadBox {
+  border: 2px dashed #d1d5db;
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: #f9fafb;
+  position: relative;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.UploadBox:hover {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+}
+.UploadIcon {
+  color: #9ca3af;
+}
+.FileName {
+  font-weight: 600;
+  color: #2563eb;
+  background: #dbeafe;
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.9rem;
+}
+.FileInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.HelpText {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+/* ... KEEP ALL YOUR EXISTING CSS ... */
+
+/* --- New Styles for Viewing Modal --- */
+.ModalContentWide {
+  max-width: 900px;
+  width: 90%;
+}
+
+.ViewerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.ViewerMeta {
+  display: flex;
+  gap: 1.5rem;
+  background: #f3f4f6;
+  padding: 1rem;
+  border-radius: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.MetaItem {
+  display: flex;
+  flex-direction: column;
+}
+.Label {
+  font-size: 0.75rem;
+  color: #6b7280;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.Value {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.CertLink {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  color: #2563eb;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+.CertLink:hover {
+  background: #eff6ff;
+  border-color: #2563eb;
+}
+
+/* 3D Render Iframe Wrapper */
+.IframeWrapper {
+  width: 100%;
+  aspect-ratio: 16/9; /* Standard Video Ratio */
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.RenderIframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.RenderImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #f9fafb;
+}
+
+.ViewerFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 1rem;
+}
+
+.UrlText {
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+
+/* Small Preview in Edit Form */
+.PreviewBox {
+  background: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+.SmallPreview {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 4px;
+}
+.SmallPreviewImg {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+.EmptyViewer {
+  text-align: center;
+  padding: 2rem;
+  color: #9ca3af;
+  background: #f9fafb;
+  border-radius: 8px;
+}
