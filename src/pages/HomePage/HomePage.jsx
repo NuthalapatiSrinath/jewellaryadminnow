@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import styles from "./HomePage.module.css";
 
-// --- IMPORT SEPARATE VIEWS ---
+// --- IMPORT SEPARATE VIsdjkEWS ---
 import DashboardOverview from "../../components/DashboardViews/DashboardOverview";
 import ManageDiamonds from "../../components/DashboardViews/ManageDiamonds";
 import SettingsPage from "../../components/DashboardViews/SettingsPage";
